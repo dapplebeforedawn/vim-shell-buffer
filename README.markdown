@@ -1,6 +1,6 @@
 # ShBuffer
 
-> execute selected shell command and return the result in a scratch buffer
+> Execute selected shell command and return the result in a scratch buffer
 
 ### How To:
 
