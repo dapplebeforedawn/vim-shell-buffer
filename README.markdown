@@ -23,4 +23,4 @@ one two three
 
 ### Oops, it's broken
 
-ShBuffer relies on $SHELL being set.  It should already be, but if it's not: `export $SHELL /bin/bash`
+ShBuffer relies on `$SHELL` being set.  It should already be, but if it's not: `export $SHELL /bin/bash`
