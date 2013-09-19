@@ -9,8 +9,12 @@
 " Reset the CoffeeCompile variables for the current buffer.
 function! s:ShCompileResetVars()
   " Compiled output buffer
-  let b:sh_compile_buf = -1
-  let b:sh_compile_pos = []
+  if !exists('b:sh_compile_buf')
+    let b:sh_compile_buf = -1
+  endif
+  if !exists('b:sh_compile_pos')
+    let b:sh_compile_pos = []
+  endif
 endfunction
 
 " Clean things up in the source buffer.
@@ -42,6 +46,7 @@ function! s:ShCompileUpdate(startline, endline)
   endif
 
   " Compile input.
+  "let output = system(g:sh_compiler . ' 2>&1', input)
   let output = system(g:sh_compiler . ' 2>&1', input)
 
   " Be sure we're in the CoffeeCompile buffer before overwriting.
@@ -66,6 +71,9 @@ endfunction
 " to prevent the cursor from being moved (and its position saved) before the
 " function is called.
 function! s:ShCompile(startline, endline, args)
+  " A hack that I added, but it works!
+  call s:ShCompileResetVars()  
+
   if !executable(g:sh_compiler)
     echoerr "Can't find Sh `" . g:sh_compiler . "`"
     return
